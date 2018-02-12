@@ -14,14 +14,15 @@ client.on('message', message => {
 
   if (message.content.indexOf('vitas') >= 0) {
     // Only try to join the sender's voice channel if they are in one themselves
+    let voiceChannel = message.member.voiceChannel;
     if (message.member.voiceChannel) {
-      message.member.voiceChannel.join()
+      voiceChannel.join()
         .then(connection => { // Connection is an instance of VoiceConnection
           // To play a file, we need to give an absolute path to it
           const dispatcher = connection.playFile(path.resolve('./vitasmusic.mp3'));
           dispatcher.on('end', () => {
             // The song has finished
-            message.member.voiceChannel.leave();
+            voiceChannel.leave();
           });
 
           dispatcher.on('error', e => {
