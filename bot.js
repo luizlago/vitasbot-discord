@@ -12,7 +12,7 @@ client.on("message", message => {
   // we ignore it
   if (!message.guild) return;
 
-  if (message.content.indexOf("vitas") >= 0) {
+  if (message.content.toLowerCase().indexOf("vitas") >= 0) {
     // Only try to join the sender's voice channel if they are in one themselves
     let voiceChannel = message.member.voiceChannel;
     if (message.member.voiceChannel) {
@@ -22,11 +22,11 @@ client.on("message", message => {
           // Connection is an instance of VoiceConnection
           // To play a file, we need to give an absolute path to it
           let dispatcher;
-          if (message.content.indexOf("plantao") >= 0)
+          if (message.content.toLowerCase().indexOf("plantao") >= 0)
             dispatcher = connection.playFile(
               path.resolve("./songs/vitasplantao.mp3")
             );
-          else if (message.content.indexOf("acapela") >= 0)
+          else if (message.content.toLowerCase().indexOf("acapela") >= 0)
             dispatcher = connection.playFile(
               path.resolve("./songs/vitascapela.mp3")
             );
@@ -49,7 +49,7 @@ client.on("message", message => {
         })
         .catch(console.log);
     } else {
-      message.reply("You need to join a voice channel first!");
+      message.reply("Você precisa entrar primeiro em um canal de voz!");
     }
   }
 });
