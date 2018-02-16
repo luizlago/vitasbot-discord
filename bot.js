@@ -14,8 +14,8 @@ client.on("message", message => {
 
   if (message.content.toLowerCase().indexOf("vitas") >= 0) {
     // Only try to join the sender's voice channel if they are in one themselves
-    let voiceChannel = message.member.voiceChannel;
     if (message.member.voiceChannel) {
+      let voiceChannel = message.member.voiceChannel;
       voiceChannel
         .join()
         .then(connection => {
